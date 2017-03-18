@@ -12,6 +12,13 @@ import java.io.IOException;
 
 public class JWTAuthenticationFilter extends GenericFilterBean {
 
+    private TokenAuthenticationService tokenAuthenticationService;
+
+    @Autowired
+    public JWTAuthFilter() {
+        this.tokenAuthenticationService = new TokenAuthenticationService();
+    }
+            
     @Override
     public void doFilter(ServletRequest request,
                          ServletResponse response,
