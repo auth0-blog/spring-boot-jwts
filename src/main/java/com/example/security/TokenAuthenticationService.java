@@ -28,7 +28,7 @@ class TokenAuthenticationService {
     }
 
     static Authentication getAuthentication(HttpServletRequest request) {
-        String token = request.getHeader(HEADER_STRING);
+        String token = request.getHeader(HEADER_STRING).substring(7); // skip the 'Baerer '
         if (token != null) {
             // parse the token.
             String user = Jwts.parser()
