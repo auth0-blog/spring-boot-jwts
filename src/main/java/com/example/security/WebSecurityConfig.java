@@ -16,9 +16,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${auth0.issuer}")
     private String issuer;
 
-    @Value("${auth0.secret}")
-    private String secret;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -26,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users").authenticated();
 
         JwtWebSecurityConfigurer
-                .forHS256(audience, issuer, secret.getBytes())
+                .forRS256(audience, issuer)
                 .configure(http);
     }
 }
